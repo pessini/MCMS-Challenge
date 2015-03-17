@@ -6,13 +6,13 @@
 //  Copyright (c) 2015 Brazuca Labs. All rights reserved.
 //
 
-#import "ViewController.h"
+#import "CreatureViewController.h"
 
-@interface ViewController ()
+@interface CreatureViewController ()
 
 @end
 
-@implementation ViewController
+@implementation CreatureViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
