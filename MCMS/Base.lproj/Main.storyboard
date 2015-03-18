@@ -171,7 +171,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="DetailCell" id="S0v-fw-eYt">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="AccessoryCell" id="S0v-fw-eYt">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="S0v-fw-eYt" id="i9a-Y8-zox">
@@ -182,6 +182,10 @@
                                 <variation key="widthClass=compact" fixedFrame="YES">
                                     <rect key="frame" x="0.0" y="164" width="400" height="392"/>
                                 </variation>
+                                <connections>
+                                    <outlet property="dataSource" destination="y8b-gR-BeL" id="syw-j5-f03"/>
+                                    <outlet property="delegate" destination="y8b-gR-BeL" id="nNj-Br-eYG"/>
+                                </connections>
                             </tableView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="MrT-yb-CXW">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
@@ -225,6 +229,7 @@
                         <outlet property="imageViewCreature" destination="MrT-yb-CXW" id="e3T-Zf-NF2"/>
                         <outlet property="labelCreatureDetail" destination="f00-BX-TPv" id="6Ah-7S-fgA"/>
                         <outlet property="labelCreatureName" destination="KNH-yN-4M7" id="kee-5f-cAK"/>
+                        <outlet property="tableView" destination="nrV-2v-nEC" id="Fnk-es-1j2"/>
                         <outlet property="textFieldCreatureDetail" destination="yiE-9S-Toz" id="SiP-PL-yaE"/>
                         <outlet property="textFieldCreatureName" destination="rFP-DW-JNq" id="zx6-gv-WcE"/>
                     </connections>

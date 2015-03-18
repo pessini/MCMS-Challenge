@@ -8,12 +8,14 @@
 
 #import "CreatureViewController.h"
 
-@interface CreatureViewController ()
+@interface CreatureViewController ()<UITableViewDataSource, UITableViewDelegate>
+
 @property (weak, nonatomic) IBOutlet UILabel *labelCreatureName;
 @property (weak, nonatomic) IBOutlet UILabel *labelCreatureDetail;
 @property (weak, nonatomic) IBOutlet UIImageView *imageViewCreature;
 @property (weak, nonatomic) IBOutlet UITextField *textFieldCreatureName;
 @property (weak, nonatomic) IBOutlet UITextField *textFieldCreatureDetail;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end
 
@@ -26,7 +28,7 @@
     self.labelCreatureName.text = self.creature.name;
     self.labelCreatureDetail.text = self.creature.detail;
 
-    NSLog(@"%@", self.creature.imageName);
+//    NSLog(@"%@", self.creature.imageName);
 
     if (![self.creature.imageName isEqualToString:@""]) {
         [self.imageViewCreature setImage:[UIImage imageNamed:self.creature.imageName]];
@@ -35,12 +37,6 @@
     // hide the textField
     self.textFieldCreatureName.hidden = true;
     self.textFieldCreatureDetail.hidden = true;
-
-    //
-
-//    if (self.creature.image) {
-
-//    }
 
 }   
 
@@ -82,6 +78,21 @@
         self.textFieldCreatureDetail.hidden = true;
     }
 
+}
+
+#pragma mark -UITableViewDataSource
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"AccessoryCell"];
+    cell.textLabel.text = [self.creature.accessories objectAtIndex:indexPath.row];
+    return cell;
+
+}
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return self.creature.accessories.count;
 }
 
 

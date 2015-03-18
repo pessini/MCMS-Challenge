@@ -22,15 +22,35 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    MagicalCreature *creatureOne = [[MagicalCreature alloc] initWithName:@"Spider Man"
-                                                               andDetail:@"Spider detail"
-                                                            andImageName:@"creature_0"];
-    MagicalCreature *creatureTwo = [[MagicalCreature alloc] initWithName:@"Super Man"
-                                                               andDetail:@"Super detail"
-                                                            andImageName:@"creature_1"];
-    MagicalCreature *creatureThree = [[MagicalCreature alloc] initWithName:@"Batman"
-                                                                 andDetail:@"Batman detail"
-                                                              andImageName:@"creature_2"];
+    MagicalCreature *creatureOne = [[MagicalCreature alloc] initWithName:@"Creature 1"
+                                                               andDetail:@"Creature 1 Details"
+                                                            andImageName:@"creature_0"
+                                                          andAccessories:[NSMutableArray arrayWithObjects:
+                                                                          @"accessory 1",
+                                                                          @"accessory 2",
+                                                                          @"accessory 3",
+                                                                          @"accessory 4",
+                                                                          @"accessory 5", nil]];
+
+    MagicalCreature *creatureTwo = [[MagicalCreature alloc] initWithName:@"Creature 2"
+                                                               andDetail:@"Creature 2 Details"
+                                                            andImageName:@"creature_1"
+                                                          andAccessories:[NSMutableArray arrayWithObjects:
+                                                                          @"accessory 1 for C2",
+                                                                          @"accessory 2 for C2",
+                                                                          @"accessory 3 for C2",
+                                                                          @"accessory 4 for C2",
+                                                                          @"accessory 5 for C2", nil]];
+
+    MagicalCreature *creatureThree = [[MagicalCreature alloc] initWithName:@"Creature 3"
+                                                               andDetail:@"Creature 3 Details"
+                                                            andImageName:@"creature_2"
+                                                          andAccessories:[NSMutableArray arrayWithObjects:
+                                                                          @"accessory 1 for C3",
+                                                                          @"accessory 2 for C3",
+                                                                          @"accessory 3 for C3",
+                                                                          @"accessory 4 for C3",
+                                                                          @"accessory 5 for C3", nil]];
 
     self.creatures = [NSMutableArray arrayWithObjects:creatureOne,creatureTwo,creatureThree, nil];
 
@@ -77,7 +97,13 @@
 
         MagicalCreature *newCreature = [[MagicalCreature alloc] initWithName:self.textFieldCreatureName.text
                                                                    andDetail:self.textFieldCreatureDescription.text
-                                                                andImageName:addImage];
+                                                                andImageName:addImage
+                                                              andAccessories:[NSMutableArray arrayWithObjects:
+                                                                              @"accessory 1",
+                                                                              @"accessory 2",
+                                                                              @"accessory 3",
+                                                                              @"accessory 4",
+                                                                              @"accessory 5", nil]];
         [self.creatures addObject:newCreature];
         [self.tableView reloadData];
 
