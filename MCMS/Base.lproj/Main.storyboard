@@ -109,6 +109,9 @@
                     <navigationItem key="navigationItem" id="jtt-i4-dR1">
                         <barButtonItem key="rightBarButtonItem" title="BATTLE" id="xk5-DD-3ES">
                             <color key="tintColor" red="1" green="0.40000000596046448" blue="0.40000000596046448" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <segue destination="I2y-AR-hg3" kind="presentation" identifier="BattleSegue" id="wE3-0u-oxY"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
@@ -236,7 +239,24 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rFV-JF-Y1k" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2410.5" y="334"/>
+            <point key="canvasLocation" x="2593.5" y="774"/>
+        </scene>
+        <!--Battle View Controller-->
+        <scene sceneID="GtB-2I-bl9">
+            <objects>
+                <viewController id="I2y-AR-hg3" customClass="BattleViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="SJZ-t0-x0H"/>
+                        <viewControllerLayoutGuide type="bottom" id="T6d-1s-swu"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="TSA-iy-xCf">
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0xd-ha-6CT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2593.5" y="103"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="rBE-v0-P3O">
