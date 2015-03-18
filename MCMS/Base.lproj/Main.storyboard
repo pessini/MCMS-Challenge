@@ -75,7 +75,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="L6N-7U-OXY" kind="show" identifier="ShowCreatureSegue" id="VIc-WC-zAv"/>
+                                            <segue destination="y8b-gR-BeL" kind="show" identifier="ShowCreatureSegue" id="JoX-RW-tdW"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -121,47 +121,67 @@
             </objects>
             <point key="canvasLocation" x="1689" y="334"/>
         </scene>
-        <!--Creature View Controller-->
-        <scene sceneID="DJc-pc-zOn">
+        <!--Title-->
+        <scene sceneID="eai-7A-Q98">
             <objects>
-                <viewController id="L6N-7U-OXY" customClass="CreatureViewController" sceneMemberID="viewController">
+                <viewController id="y8b-gR-BeL" customClass="CreatureViewController" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="hbb-dJ-p8k"/>
-                        <viewControllerLayoutGuide type="bottom" id="8v0-6P-Cvo"/>
+                        <viewControllerLayoutGuide type="top" id="F3d-C7-vkH"/>
+                        <viewControllerLayoutGuide type="bottom" id="yxX-vp-loK"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="z95-xa-OrS">
+                    <view key="view" contentMode="scaleToFill" id="Ig0-SQ-Tgb">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vSP-fZ-zzQ">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KNH-yN-4M7">
                                 <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                                 <variation key="widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="80" y="265" width="240" height="69"/>
+                                    <rect key="frame" x="115" y="265" width="170" height="70"/>
                                 </variation>
                             </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rFP-DW-JNq">
+                                <rect key="frame" x="0.0" y="-30" width="97" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <variation key="widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="115" y="285" width="170" height="30"/>
+                                </variation>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <variation key="default">
                             <mask key="subviews">
-                                <exclude reference="vSP-fZ-zzQ"/>
+                                <exclude reference="KNH-yN-4M7"/>
+                                <exclude reference="rFP-DW-JNq"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
                             <mask key="subviews">
-                                <include reference="vSP-fZ-zzQ"/>
+                                <include reference="KNH-yN-4M7"/>
+                                <include reference="rFP-DW-JNq"/>
                             </mask>
                         </variation>
                     </view>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" title="Title" id="1Bk-ey-RcV">
+                        <barButtonItem key="rightBarButtonItem" title="Edit" id="tlm-fQ-NgH">
+                            <connections>
+                                <action selector="onEditButtonTapped:" destination="y8b-gR-BeL" id="G89-bn-fXC"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="labelCreatureName" destination="vSP-fZ-zzQ" id="t8S-4m-gdM"/>
+                        <outlet property="labelCreatureName" destination="KNH-yN-4M7" id="kee-5f-cAK"/>
+                        <outlet property="textFieldCreatureName" destination="rFP-DW-JNq" id="zx6-gv-WcE"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="f4v-wj-i2Q" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rFV-JF-Y1k" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2442" y="334"/>
+            <point key="canvasLocation" x="2410.5" y="334"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="rBE-v0-P3O">
