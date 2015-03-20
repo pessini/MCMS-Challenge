@@ -85,7 +85,8 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"AccessoryCell"];
-    cell.textLabel.text = [self.creature.accessories objectAtIndex:indexPath.row];
+    cell.textLabel.text = [NSString stringWithFormat:@"Accessory Power - %@",[self.creature.accessories objectAtIndex:indexPath.row]];
+
     return cell;
 
 }

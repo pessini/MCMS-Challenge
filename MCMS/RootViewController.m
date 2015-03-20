@@ -9,11 +9,14 @@
 #import "RootViewController.h"
 #import "MagicalCreature.h"
 #import "CreatureViewController.h"
+#import "BattleViewController.h"
 
 @interface RootViewController ()<UITableViewDataSource, UITableViewDelegate>
+
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UITextField *textFieldCreatureName;
 @property (weak, nonatomic) IBOutlet UITextField *textFieldCreatureDescription;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *battleButton;
 
 @end
 
@@ -25,40 +28,25 @@
     MagicalCreature *creatureOne = [[MagicalCreature alloc] initWithName:@"Creature 1"
                                                                andDetail:@"Creature 1 Details"
                                                             andImageName:@"creature_0"
-                                                          andAccessories:[NSMutableArray arrayWithObjects:
-                                                                          @"accessory 1",
-                                                                          @"accessory 2",
-                                                                          @"accessory 3",
-                                                                          @"accessory 4",
-                                                                          @"accessory 5", nil]];
+                                                          andAccessories:[self randomAccessories]];
 
     MagicalCreature *creatureTwo = [[MagicalCreature alloc] initWithName:@"Creature 2"
                                                                andDetail:@"Creature 2 Details"
                                                             andImageName:@"creature_1"
-                                                          andAccessories:[NSMutableArray arrayWithObjects:
-                                                                          @"accessory 1 for C2",
-                                                                          @"accessory 2 for C2",
-                                                                          @"accessory 3 for C2",
-                                                                          @"accessory 4 for C2",
-                                                                          @"accessory 5 for C2", nil]];
+                                                          andAccessories:[self randomAccessories]];
 
     MagicalCreature *creatureThree = [[MagicalCreature alloc] initWithName:@"Creature 3"
                                                                andDetail:@"Creature 3 Details"
                                                             andImageName:@"creature_2"
-                                                          andAccessories:[NSMutableArray arrayWithObjects:
-                                                                          @"accessory 1 for C3",
-                                                                          @"accessory 2 for C3",
-                                                                          @"accessory 3 for C3",
-                                                                          @"accessory 4 for C3",
-                                                                          @"accessory 5 for C3", nil]];
+                                                          andAccessories:[self randomAccessories]];
 
     self.creatures = [NSMutableArray arrayWithObjects:creatureOne,creatureTwo,creatureThree, nil];
 
-//    for (MagicalCreature *creature in self.creatures)
-//    {
-//        NSLog(@"%@", creature.name);
-//    }
+}
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    [self.tableView reloadData];
 }
 
 #pragma mark -UITableViewDataSource
@@ -68,9 +56,12 @@
     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"CreatureCell"];
     cell.textLabel.text = [[self.creatures objectAtIndex:indexPath.row] name];
     cell.detailTextLabel.text = [[self.creatures objectAtIndex:indexPath.row] detail];
+
+
     return cell;
 
 }
+
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -81,7 +72,6 @@
 
 -(IBAction)onAddNewCreatureButtonTapped:(UIButton *)sender
 {
-
     // check if there is any empty textField
     if ([self.textFieldCreatureName.text length] > 0
         || [self.textFieldCreatureDescription.text length] > 0)
@@ -98,12 +88,7 @@
         MagicalCreature *newCreature = [[MagicalCreature alloc] initWithName:self.textFieldCreatureName.text
                                                                    andDetail:self.textFieldCreatureDescription.text
                                                                 andImageName:addImage
-                                                              andAccessories:[NSMutableArray arrayWithObjects:
-                                                                              @"accessory 1",
-                                                                              @"accessory 2",
-                                                                              @"accessory 3",
-                                                                              @"accessory 4",
-                                                                              @"accessory 5", nil]];
+                                                              andAccessories:[self randomAccessories]];
         [self.creatures addObject:newCreature];
         [self.tableView reloadData];
 
@@ -111,7 +96,14 @@
         self.textFieldCreatureName.text = nil;
         self.textFieldCreatureDescription.text = nil;
 
-        [self.textFieldCreatureDescription resignFirstResponder];
+        if ([self.textFieldCreatureName isFirstResponder])
+        {
+            [self.textFieldCreatureName resignFirstResponder];
+        }
+        else
+        {
+            [self.textFieldCreatureDescription resignFirstResponder];
+        }
 
     }
     else
@@ -128,13 +120,50 @@
 
 #pragma mark -Segue
 
--(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(UITableViewCell *)cell
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
-    MagicalCreature *creatureToSend = [self.creatures objectAtIndex:indexPath.row];
-    CreatureViewController *vc = segue.destinationViewController;
-    vc.creature = creatureToSend;
-    vc.title = creatureToSend.name;
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
+
+    if ([segue.identifier isEqualToString:@"ShowCreatureSegue"])
+    {
+
+        MagicalCreature *creatureToSend = [self.creatures objectAtIndex:indexPath.row];
+        CreatureViewController *vc = segue.destinationViewController;
+        vc.creature = creatureToSend;
+        vc.title = creatureToSend.name;
+    }
+    else if ([segue.identifier isEqualToString:@"BattleSegue"])
+    {
+        BattleViewController *vc = segue.destinationViewController;
+        vc.title = @"Battle";
+        NSUInteger randomOpponentOne = arc4random_uniform((int32_t)self.creatures.count);
+        NSUInteger randomOpponentTwo = arc4random_uniform((int32_t)self.creatures.count);
+        while (randomOpponentOne == randomOpponentTwo)
+        {
+            randomOpponentTwo = arc4random_uniform((int32_t)self.creatures.count);
+        }
+        vc.opponentOne = [self.creatures objectAtIndex:randomOpponentOne];
+        vc.opponentTwo = [self.creatures objectAtIndex:randomOpponentTwo];
+
+    }
+}
+
+#pragma mark -Helper Methods
+
+-(NSArray *)randomAccessories
+{
+    NSNumber *accessoryOne,*accessoryTwo,*accessoryThree;
+
+    for (int i = 0; i <3; i++) {
+        accessoryOne = [NSNumber numberWithInt: arc4random_uniform(100) + 1];
+        accessoryTwo = [NSNumber numberWithInt: arc4random_uniform(100) + 1];
+        accessoryThree = [NSNumber numberWithInt: arc4random_uniform(100) + 1];
+    }
+
+    NSArray *arrayWithAccessories = [[NSArray alloc] initWithObjects:accessoryOne, accessoryTwo, accessoryThree, nil];
+
+
+    return arrayWithAccessories;
 }
 
 

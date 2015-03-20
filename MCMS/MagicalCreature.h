@@ -14,11 +14,11 @@
 @property NSString *name;
 @property NSString *detail;
 @property NSString *imageName;
-@property NSMutableArray *accessories;
+@property NSArray *accessories;
 
 -(instancetype)initWithName:(NSString *)name
                   andDetail:(NSString *)detail
                   andImageName:(NSString *)imageName
-                  andAccessories:(NSMutableArray *)accessories;
+                  andAccessories:(NSArray *)accessories;
 
 @end
